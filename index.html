@@ -17,6 +17,7 @@
                     colors: {
                         brand: {
                             orange: '#FF5F1F',
+                            purple: '#A855F7', // Для суточного тарифа
                             dark: '#0B0F19',
                             card: '#151A26'
                         }
@@ -29,36 +30,44 @@
     <style>
         body { background-color: #0B0F19; color: white; overflow-x: hidden; }
         
-        /* Стеклянный эффект */
         .glass {
-            background: rgba(21, 26, 38, 0.6);
-            backdrop-filter: blur(12px);
+            background: rgba(21, 26, 38, 0.7);
+            backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
         
-        /* Градиентный текст */
         .text-gradient {
             background: linear-gradient(135deg, #FF5F1F 0%, #FFC300 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Анимированный фон (пятна) */
         .glow-blob {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,95,31,0.15) 0%, rgba(0,0,0,0) 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,95,31,0.12) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: -1;
         }
+        
+        /* Анимация телефона в кабинете */
+        .phone-mockup {
+            border: 8px solid #2a2a2a;
+            border-radius: 30px;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+        }
     </style>
 </head>
-<body class="relative">
+<body class="relative font-sans antialiased">
 
     <div class="glow-blob top-0 left-0 translate-x-[-30%] translate-y-[-30%]"></div>
     <div class="glow-blob bottom-0 right-0 translate-x-[30%] translate-y-[30%]"></div>
+    <div class="glow-blob top-[40%] left-[50%] translate-x-[-50%] bg-purple-500/10"></div>
 
     <header class="fixed w-full z-50 transition-all duration-300" id="navbar">
         <div class="glass border-b border-white/5">
@@ -69,16 +78,21 @@
                 </div>
 
                 <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-                    <a href="#features" class="hover:text-white transition">Преимущества</a>
+                    <a href="#cabinet-info" class="hover:text-white transition">Кабинет</a>
                     <a href="#pricing" class="hover:text-white transition">Тарифы</a>
                     <a href="#faq" class="hover:text-white transition">FAQ</a>
                 </nav>
 
-                <a href="https://cabinet.fastvillage.ru/" target="_blank" class="hidden md:inline-flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full font-bold hover:bg-brand-orange hover:text-white transition transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                    <i class="fa-regular fa-user"></i> Кабинет
-                </a>
-
-                <button class="md:hidden text-2xl"><i class="fa-solid fa-bars"></i></button>
+                <div class="flex items-center gap-4">
+                     <a href="https://t.me/stvillage_test_bot" class="text-gray-400 hover:text-[#24A1DE] transition text-2xl">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                    <a href="https://cabinet.fastvillage.ru/" class="hidden md:inline-flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full font-bold hover:bg-brand-orange hover:text-white transition transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                        <i class="fa-regular fa-user"></i> Вход
+                    </a>
+                </div>
+                
+                <button class="md:hidden text-2xl ml-4"><i class="fa-solid fa-bars"></i></button>
             </div>
         </div>
     </header>
@@ -87,139 +101,235 @@
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             
             <div data-aos="fade-right" data-aos-duration="1000">
-                <div class="inline-block px-4 py-1 rounded-full border border-brand-orange/30 bg-brand-orange/10 text-brand-orange text-xs font-bold mb-6 tracking-widest uppercase">
-                    VLESS • Reality • Vision
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-orange/30 bg-brand-orange/10 text-brand-orange text-xs font-bold mb-6 tracking-widest uppercase">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-orange"></span>
+                    </span>
+                    Доступен новый протокол Reality
                 </div>
                 <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
                     ИНТЕРНЕТ БЕЗ <br>
-                    <span class="text-gradient">ТОРМОЗОВ И ЦЕНЗУРЫ</span>
+                    <span class="text-gradient">ГРАНИЦ</span>
                 </h1>
                 <p class="text-gray-400 text-lg mb-8 max-w-lg leading-relaxed">
-                    Премиальный доступ к сети через приватные сервера. YouTube в 4K, Netflix и Instagram работают так, как должны работать.
+                    Премиальный доступ к сети. Смотри Netflix, YouTube 4K и играй с низким пингом. Управляй подпиской через удобный личный кабинет.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://t.me/stvillage_test_bot" target="_blank" class="bg-brand-orange text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-orange-600 transition shadow-[0_10px_40px_-10px_rgba(255,95,31,0.5)] text-center">
-                        <i class="fa-brands fa-telegram mr-2"></i> Подключить бота
+                    <a href="#pricing" class="bg-brand-orange text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-orange-600 transition shadow-[0_10px_40px_-10px_rgba(255,95,31,0.5)] text-center">
+                        Попробовать бесплатно
                     </a>
-                    <a href="#pricing" class="px-8 py-4 rounded-xl font-bold text-lg border border-white/20 hover:bg-white/5 transition text-center">
-                        Выбрать тариф
+                    <a href="https://cabinet.fastvillage.ru/" class="px-8 py-4 rounded-xl font-bold text-lg border border-white/20 hover:bg-white/5 transition text-center">
+                        Личный кабинет
                     </a>
                 </div>
                 
-                <div class="mt-12 flex items-center gap-6 text-gray-500 text-sm">
-                    <div class="flex items-center gap-2"><i class="fa-brands fa-apple text-xl"></i> iOS</div>
-                    <div class="flex items-center gap-2"><i class="fa-brands fa-android text-xl"></i> Android</div>
-                    <div class="flex items-center gap-2"><i class="fa-brands fa-windows text-xl"></i> Windows</div>
+                <div class="mt-12 border-t border-white/5 pt-6 flex items-center justify-between max-w-sm text-gray-500 text-sm">
+                    <div><span class="text-white font-bold text-xl block">10+</span>Локаций</div>
+                    <div><span class="text-white font-bold text-xl block">1Gb/s</span>Канал</div>
+                    <div><span class="text-white font-bold text-xl block">0%</span>Логов</div>
                 </div>
             </div>
 
             <div class="relative hidden lg:block" data-aos="zoom-in" data-aos-duration="1200">
                 <div class="absolute inset-0 bg-brand-orange/20 blur-[100px] rounded-full"></div>
-                <div class="glass rounded-3xl p-8 transform rotate-3 hover:rotate-0 transition duration-500 border-white/10">
-                    <div class="flex justify-between items-center mb-6">
-                        <div class="flex gap-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        </div>
-                        <div class="text-xs text-gray-500">Connected: 12ms</div>
+                <div class="glass rounded-3xl p-1 relative z-10 transform rotate-2 hover:rotate-0 transition duration-700">
+                    <img src="https://i.postimg.cc/L4t1DYTs/Снимок_экрана_2026_02_01_205144.png" alt="Map Interface" class="rounded-2xl w-full h-auto opacity-80" onerror="this.style.display='none'">
+                    <div class="bg-brand-card p-8 rounded-2xl min-h-[400px] flex flex-col justify-center items-center text-center space-y-6">
+                         <div class="w-24 h-24 bg-brand-orange/20 rounded-full flex items-center justify-center text-4xl text-brand-orange animate-pulse">
+                            <i class="fa-solid fa-shield-halved"></i>
+                         </div>
+                         <h3 class="text-2xl font-bold">Защита активна</h3>
+                         <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                             <div class="h-full bg-brand-orange w-2/3 animate-[width_2s_ease-in-out_infinite]"></div>
+                         </div>
+                         <div class="flex gap-4 text-sm text-gray-400">
+                             <span><i class="fa-brands fa-apple"></i> iOS</span>
+                             <span><i class="fa-brands fa-android"></i> Android</span>
+                             <span><i class="fa-brands fa-windows"></i> Win</span>
+                         </div>
                     </div>
-                    <div class="space-y-4">
-                        <div class="h-2 bg-gray-700 rounded-full w-3/4 animate-pulse"></div>
-                        <div class="h-2 bg-gray-700 rounded-full w-full animate-pulse delay-75"></div>
-                        <div class="h-2 bg-gray-700 rounded-full w-5/6 animate-pulse delay-150"></div>
-                        
-                        <div class="mt-8 p-4 bg-black/40 rounded-xl flex items-center justify-between border border-white/5">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cabinet-info" class="py-24 relative overflow-hidden">
+        <div class="absolute right-0 top-1/4 w-1/2 h-1/2 bg-blue-600/10 blur-[120px] rounded-full"></div>
+        
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Ваш центр управления <br><span class="text-blue-500">Fast Village ID</span></h2>
+                    <p class="text-gray-400 text-lg mb-8">
+                        Мы создали современный личный кабинет, где вы полностью контролируете свою подписку без ожидания ответа оператора.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400 text-xl shrink-0">
+                                <i class="fa-solid fa-qrcode"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Мгновенное подключение</h4>
+                                <p class="text-gray-400 text-sm">Просто отсканируйте QR-код из кабинета. Никаких сложных ручных настроек и файлов.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-orange/20 flex items-center justify-center text-brand-orange text-xl shrink-0">
+                                <i class="fa-solid fa-users-gear"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Управление устройствами</h4>
+                                <p class="text-gray-400 text-sm">Видите подозрительную активность? Сбросьте сессию или добавьте новое устройство в один клик.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 text-xl shrink-0">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Автоматическая оплата</h4>
+                                <p class="text-gray-400 text-sm">Пополняйте баланс любым удобным способом (Карты, Крипта) и продлевайте подписку автоматически.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <a href="https://cabinet.fastvillage.ru/" class="inline-flex items-center gap-2 text-white font-bold hover:gap-4 transition-all">
+                            Перейти в кабинет <i class="fa-solid fa-arrow-right text-brand-orange"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative" data-aos="fade-left">
+                    <div class="glass rounded-3xl p-8 border border-white/10 relative z-10 bg-gradient-to-br from-[#1a1f2e] to-[#0f1219]">
+                        <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
                             <div class="flex items-center gap-3">
-                                <div class="bg-green-500/20 p-2 rounded-lg text-green-500"><i class="fa-solid fa-lock"></i></div>
+                                <div class="w-10 h-10 rounded-full bg-gray-700"></div>
                                 <div>
-                                    <div class="text-sm font-bold">Fast Village Node 1</div>
-                                    <div class="text-xs text-gray-400">Netherlands</div>
+                                    <div class="h-3 w-24 bg-gray-600 rounded mb-2"></div>
+                                    <div class="h-2 w-16 bg-gray-700 rounded"></div>
                                 </div>
                             </div>
-                            <i class="fa-solid fa-wifi text-green-500"></i>
+                            <div class="px-3 py-1 bg-green-500/20 text-green-500 text-xs rounded-full font-bold">Active</div>
                         </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-black/40 p-4 rounded-xl">
+                                <div class="text-gray-500 text-xs mb-2">Трафик</div>
+                                <div class="text-xl font-bold">∞ GB</div>
+                            </div>
+                            <div class="bg-black/40 p-4 rounded-xl">
+                                <div class="text-gray-500 text-xs mb-2">Дней осталось</div>
+                                <div class="text-xl font-bold text-brand-orange">28 дней</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-brand-orange/10 border border-brand-orange/20 p-4 rounded-xl flex items-center gap-4 mb-4">
+                            <div class="bg-brand-orange text-white w-10 h-10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-key"></i></div>
+                            <div>
+                                <div class="font-bold text-sm">Ваш ключ доступа</div>
+                                <div class="text-xs text-gray-400">vless://uuid@ip:port...</div>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition">Продлить подписку</button>
                     </div>
+                    <div class="absolute -top-5 -right-5 w-full h-full border-2 border-dashed border-white/10 rounded-3xl z-0"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-24 relative">
+    <section id="pricing" class="py-24 bg-[#080b12]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">Почему выбирают нас?</h2>
-                <p class="text-gray-400">Мы не просто VPN, мы — ваше цифровое убежище.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-3xl hover:border-brand-orange/50 transition group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-brand-card rounded-2xl flex items-center justify-center text-2xl text-brand-orange mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-rocket"></i>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Выберите свой план</h2>
+                
+                <div class="mt-8 inline-block relative group cursor-pointer">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative bg-[#131722] ring-1 ring-white/10 rounded-xl px-8 py-4 flex items-center gap-4">
+                        <div class="bg-green-500/20 p-2 rounded-full text-green-400 text-xl"><i class="fa-regular fa-clock"></i></div>
+                        <div class="text-left">
+                            <div class="text-white font-bold">Есть сомнения?</div>
+                            <div class="text-gray-400 text-sm">Возьми <span class="text-green-400 font-bold">бесплатный тест</span> на 24 часа в боте</div>
+                        </div>
+                        <a href="https://t.me/stvillage_test_bot" class="ml-4 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm font-bold transition">Попробовать</a>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Космическая скорость</h3>
-                    <p class="text-gray-400 leading-relaxed">Забудь про буферизацию. Наши каналы оптимизированы под streaming видео в 4K и тяжелые игры.</p>
-                </div>
-
-                <div class="glass p-8 rounded-3xl hover:border-brand-orange/50 transition group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-brand-card rounded-2xl flex items-center justify-center text-2xl text-brand-orange mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-mask"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Протокол невидимка</h3>
-                    <p class="text-gray-400 leading-relaxed">Технологии VLESS Reality маскируют ваш трафик под обычный просмотр сайтов. Провайдер ничего не увидит.</p>
-                </div>
-
-                <div class="glass p-8 rounded-3xl hover:border-brand-orange/50 transition group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 h-14 bg-brand-card rounded-2xl flex items-center justify-center text-2xl text-brand-orange mb-6 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-key"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Удобный доступ</h3>
-                    <p class="text-gray-400 leading-relaxed">Один ключ доступа для 5 устройств. Автоматическая настройка через наше приложение или бота.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="pricing" class="py-24 bg-black/20">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl md:text-5xl font-bold mb-16 text-center" data-aos="fade-up">Простые тарифы</h2>
             
-            <div class="grid md:grid-cols-3 gap-8 items-center">
-                <div class="glass p-8 rounded-3xl border-white/5" data-aos="fade-right">
-                    <div class="text-xl font-bold mb-2">Базовый ⚡️</div>
-                    <div class="text-4xl font-black mb-6">от 120₽<span class="text-sm font-normal text-gray-400">/мес</span></div>
-                    <ul class="space-y-4 mb-8 text-gray-400">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> Высокая скорость</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> 3 устройства</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> Поддержка 24/7</li>
+            <div class="grid md:grid-cols-3 gap-8 items-start">
+                
+                <div class="glass p-8 rounded-3xl border-white/5 hover:border-brand-orange/30 transition duration-300" data-aos="fade-right">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-xl font-bold mb-1">Базовый ⚡️</div>
+                            <div class="text-xs text-gray-500">Для себя любимого</div>
+                        </div>
+                        <div class="text-2xl font-bold">150₽</div>
+                    </div>
+                    
+                    <div class="border-t border-white/5 my-6"></div>
+                    
+                    <ul class="space-y-4 mb-8 text-gray-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> <b>до 3 устройств</b></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i> Высокая скорость (до 1Gb)</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i> Любые соцсети и 4K</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i> Поддержка 24/7</li>
                     </ul>
-                    <a href="https://cabinet.fastvillage.ru/" class="block w-full py-3 rounded-xl border border-white/20 text-center font-bold hover:bg-white hover:text-black transition">Выбрать</a>
+                    <a href="https://cabinet.fastvillage.ru/" class="block w-full py-3 rounded-xl border border-white/20 text-center font-bold hover:bg-white hover:text-black transition">Оформить</a>
                 </div>
 
-                <div class="relative bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-3xl border border-brand-orange shadow-[0_0_30px_rgba(255,95,31,0.2)] transform md:scale-110 z-10" data-aos="fade-up">
-                    <div class="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">HIT</div>
-                    <div class="text-xl font-bold mb-2 text-brand-orange">Суточный</div>
-                    <div class="text-4xl font-black mb-6">от 5₽<span class="text-sm font-normal text-gray-400">/сутки</span></div>
-                    <p class="text-xs text-gray-400 mb-6">Выгодно если тебе нужна подписка на короткий срок</p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> <b>Приоритетный канал</b></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> 1 устройство</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> VLESS + Reality</li>
+                <div class="relative bg-gradient-to-b from-[#1E1B2E] to-[#13111D] p-8 rounded-3xl border border-brand-purple shadow-[0_0_40px_rgba(168,85,247,0.15)] transform md:scale-105 z-10" data-aos="fade-up">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-purple text-white text-xs font-bold px-4 py-1.5 rounded-full tracking-wider uppercase shadow-lg">Эксклюзив</div>
+                    
+                    <div class="flex justify-between items-start mb-4 mt-2">
+                        <div>
+                            <div class="text-xl font-bold mb-1 text-brand-purple">Суточный 🔮</div>
+                            <div class="text-xs text-gray-500">Гибкость без обязательств</div>
+                        </div>
+                        <div class="text-2xl font-bold">от 5₽</div>
+                    </div>
+
+                    <p class="text-xs text-gray-400 mb-6 bg-white/5 p-3 rounded-lg">
+                        Идеально для поездок или когда VPN нужен только на один вечер.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-purple"></i> <b>1 устройство</b></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i> VLESS + Reality</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-bolt text-brand-purple"></i> Моментальная активация</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i> Продление по желанию</li>
                     </ul>
-                    <a href="https://cabinet.fastvillage.ru/" class="block w-full py-3 rounded-xl bg-brand-orange text-white text-center font-bold hover:bg-orange-600 transition">Подключить</a>
+                    <a href="https://cabinet.fastvillage.ru/" class="block w-full py-3 rounded-xl bg-brand-purple text-white text-center font-bold hover:bg-purple-600 transition shadow-lg shadow-purple-900/20">Подключить</a>
                 </div>
 
-                <div class="glass p-8 rounded-3xl border-white/5" data-aos="fade-left">
-                    <div class="text-xl font-bold mb-2">Семейный 👩‍👩‍👦</div>
-                    <div class="text-4xl font-black mb-6">от 200₽<span class="text-sm font-normal text-gray-400">/месяц</span></div>
-                    <ul class="space-y-4 mb-8 text-gray-400">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> Максимальная выгода</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> 6 устройств</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> Гарантия работы</li>
+                <div class="glass p-8 rounded-3xl border-white/5 hover:border-brand-orange/30 transition duration-300" data-aos="fade-left">
+                     <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <div class="text-xl font-bold mb-1">Семейный 👨‍👩‍👧‍👦</div>
+                            <div class="text-xs text-gray-500">На всю семью или друзей</div>
+                        </div>
+                        <div class="text-2xl font-bold text-brand-orange">300₽</div>
+                    </div>
+                    
+                    <div class="border-t border-white/5 my-6"></div>
+                    
+                    <ul class="space-y-4 mb-8 text-gray-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-orange"></i> <b>до 6 устройств</b></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i> Максимальная экономия</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i> Общий баланс</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-shield-cat text-white"></i> Защита детей от угроз</li>
                     </ul>
-                    <a href="https://cabinet.fastvillage.ru/" class="block w-full py-3 rounded-xl border border-white/20 text-center font-bold hover:bg-white hover:text-black transition">Выбрать</a>
+                    <a href="https://cabinet.fastvillage.ru/" class="block w-full py-3 rounded-xl border border-white/20 text-center font-bold hover:bg-white hover:text-black transition">Оформить</a>
                 </div>
             </div>
+            
+            <p class="text-center text-gray-500 text-xs mt-12">* Цены могут незначительно меняться в зависимости от способа оплаты.</p>
         </div>
     </section>
 
@@ -230,31 +340,31 @@
             <div class="space-y-4">
                 <div class="glass rounded-2xl overflow-hidden">
                     <button class="w-full p-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="font-bold">Как настроить после оплаты?</span>
+                        <span class="font-bold">Как взять пробный период?</span>
                         <i class="fa-solid fa-chevron-down transition-transform"></i>
                     </button>
                     <div class="px-6 pb-0 h-0 overflow-hidden transition-all duration-300">
-                        <p class="pb-6 text-gray-400">Все максимально просто. Зайдите в личный кабинет или бот, получите ключ доступа и вставьте его в приложение V2RayNG (Android) или Streisand/V2Box (iOS). Инструкция придет автоматически.</p>
+                        <p class="pb-6 text-gray-400">Перейдите в нашего Telegram-бота или зарегистрируйтесь в Личном кабинете. Тест активируется автоматически, карта не требуется.</p>
                     </div>
                 </div>
                 
                 <div class="glass rounded-2xl overflow-hidden">
                     <button class="w-full p-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="font-bold">Сколько устройств можно подключить?</span>
+                        <span class="font-bold">Чем отличается Суточный тариф?</span>
                         <i class="fa-solid fa-chevron-down transition-transform"></i>
                     </button>
                     <div class="px-6 pb-0 h-0 overflow-hidden transition-all duration-300">
-                        <p class="pb-6 text-gray-400">Один ключ работает одновременно на 5 устройствах. Вы можете подключить телефон, планшет, компьютер и даже поделиться с другом.</p>
+                        <p class="pb-6 text-gray-400">Это наша фишка. Вы платите минимальную сумму и получаете доступ ровно на 24 часа. Идеально, если VPN нужен редко, и вы не хотите переплачивать за месяц.</p>
                     </div>
                 </div>
 
                 <div class="glass rounded-2xl overflow-hidden">
                     <button class="w-full p-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="font-bold">Это безопасно?</span>
+                        <span class="font-bold">Если у меня 6 устройств, скорость упадет?</span>
                         <i class="fa-solid fa-chevron-down transition-transform"></i>
                     </button>
                     <div class="px-6 pb-0 h-0 overflow-hidden transition-all duration-300">
-                        <p class="pb-6 text-gray-400">Абсолютно. Мы не ведем логи (записи) ваших действий. Весь трафик шифруется, и даже мы не знаем, какие сайты вы посещаете.</p>
+                        <p class="pb-6 text-gray-400">Нет! На тарифе "Семейный" выделяется расширенная полоса пропускания, чтобы все могли смотреть видео одновременно без лагов.</p>
                     </div>
                 </div>
             </div>
@@ -265,10 +375,10 @@
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-xl font-black uppercase tracking-tighter">FAST <span class="text-brand-orange">VILLAGE</span></div>
             <div class="text-gray-500 text-sm">
-                &copy; 2026. Сделано с любовью к свободе.
+                &copy; 2026. Свободный интернет для всех.
             </div>
             <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-orange hover:text-white transition"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://t.me/stvillage_test_bot" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-orange hover:text-white transition"><i class="fa-brands fa-telegram"></i></a>
                 <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-orange hover:text-white transition"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
@@ -276,18 +386,10 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Инициализация анимаций
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 800,
-        });
-
-        // FAQ Логика
+        AOS.init({ once: true, offset: 50, duration: 800 });
         function toggleFaq(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('i');
-            
             if (content.style.height && content.style.height !== '0px') {
                 content.style.height = '0';
                 icon.style.transform = 'rotate(0deg)';
