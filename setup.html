@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAST VILLAGE | Настройка подключения</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: { orange: '#FF5F1F', dark: '#0B0F19' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0B0F19; color: white; }
+        .glass {
+            background: rgba(21, 26, 38, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        /* Стили для активного таба */
+        .tab-btn.active {
+            background-color: #FF5F1F;
+            color: white;
+            border-color: #FF5F1F;
+        }
+        .step-number {
+            font-family: 'Outfit', sans-serif;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col">
+
+    <header class="w-full py-6 border-b border-white/5">
+        <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition">
+                <i class="fa-solid fa-arrow-left text-brand-orange"></i>
+                <span class="font-bold">На Главную</span>
+            </a>
+            <div class="text-xl font-black tracking-tighter uppercase">FAST <span class="text-brand-orange">VILLAGE</span></div>
+        </div>
+    </header>
+
+    <main class="flex-grow py-12 px-4">
+        <div class="max-w-4xl mx-auto">
+            
+            <h1 class="text-3xl md:text-5xl font-bold text-center mb-4">Настройка за 2 минуты</h1>
+            <p class="text-gray-400 text-center mb-12">Выберите ваше устройство, чтобы получить инструкцию</p>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="switchTab('android')" id="btn-android" class="tab-btn active px-6 py-3 rounded-xl border border-white/10 font-bold hover:bg-white/5 transition flex items-center gap-2">
+                    <i class="fa-brands fa-android"></i> Android
+                </button>
+                <button onclick="switchTab('ios')" id="btn-ios" class="tab-btn px-6 py-3 rounded-xl border border-white/10 font-bold hover:bg-white/5 transition flex items-center gap-2">
+                    <i class="fa-brands fa-apple"></i> iPhone / iPad
+                </button>
+                <button onclick="switchTab('windows')" id="btn-windows" class="tab-btn px-6 py-3 rounded-xl border border-white/10 font-bold hover:bg-white/5 transition flex items-center gap-2">
+                    <i class="fa-brands fa-windows"></i> Windows
+                </button>
+            </div>
+
+            <div id="content-android" class="tab-content space-y-8 animate-fade-in">
+                <div class="glass p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+                    <div class="text-8xl font-black step-number opacity-20">01</div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2">Скачайте приложение</h3>
+                        <p class="text-gray-400 mb-4">Мы рекомендуем <b>v2rayNG</b>. Это бесплатно, надежно и поддерживает протоколы Reality.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.v2ray.ang" target="_blank" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-bold hover:bg-brand-orange hover:text-white transition">
+                            <i class="fa-brands fa-google-play"></i> Скачать из Google Play
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+                    <div class="text-8xl font-black step-number opacity-20">02</div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2">Скопируйте ключ</h3>
+                        <p class="text-gray-400 mb-4">Зайдите в наш бот или личный кабинет и нажмите кнопку <b>"Скопировать ключ"</b>. Он начинается на <code>vless://</code></p>
+                        <div class="bg-black/50 p-3 rounded-lg text-xs text-gray-500 font-mono break-all border border-white/10">
+                            vless://96b0147... (пример ключа)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+                    <div class="text-8xl font-black step-number opacity-20">03</div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2">Подключитесь</h3>
+                        <ul class="text-gray-400 space-y-2">
+                            <li>1. Откройте v2rayNG.</li>
+                            <li>2. Нажмите <b>(+)</b> сверху справа → "Импорт из буфера обмена".</li>
+                            <li>3. Выберите появившийся сервер и нажмите круглую кнопку <b>(V)</b> снизу.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-ios" class="tab-content hidden space-y-8">
+                <div class="glass p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+                    <div class="text-8xl font-black step-number opacity-20">01</div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2">Установите V2Box</h3>
+                        <p class="text-gray-400 mb-4">Лучшее приложение для iPhone. Полная поддержка наших протоколов.</p>
+                        <a href="https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690" target="_blank" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-bold hover:bg-brand-orange hover:text-white transition">
+                            <i class="fa-brands fa-app-store"></i> Скачать из AppStore
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+                    <div class="text-8xl font-black step-number opacity-20">02</div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2">Добавьте ключ</h3>
+                        <p class="text-gray-400 mb-4">Скопируйте ключ доступа в боте. Откройте V2Box — он сам предложит добавить ключ из буфера обмена.</p>
+                        <p class="text-sm text-brand-orange">Если не предложил: нажмите "Import V2ray URL"</p>
+                    </div>
+                </div>
+                 <div class="glass p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+                    <div class="text-8xl font-black step-number opacity-20">03</div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2">Запуск</h3>
+                        <p class="text-gray-400">Нажмите переключатель <b>Connect</b>. При первом запуске iPhone спросит разрешение на добавление VPN конфигурации — нажмите <b>"Разрешить"</b> и введите пароль от телефона.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-windows" class="tab-content hidden space-y-8">
+                <div class="glass p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+                    <div class="text-8xl font-black step-number opacity-20">01</div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2">Hiddify Next</h3>
+                        <p class="text-gray-400 mb-4">Самый современный и красивый клиент для Windows. Работает там, где другие не могут.</p>
+                        <a href="https://github.com/hiddify/hiddify-next/releases/latest" target="_blank" class="inline-flex items-center gap-2 bg-[#24292e] text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-orange transition">
+                            <i class="fa-brands fa-github"></i> Скачать с GitHub
+                        </a>
+                        <p class="text-xs text-gray-500 mt-2">Выбирайте файл с окончанием <code>.exe</code> (Setup)</p>
+                    </div>
+                </div>
+                 <div class="glass p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+                    <div class="text-8xl font-black step-number opacity-20">02</div>
+                    <div class="flex-grow text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2">Активация</h3>
+                        <p class="text-gray-400">1. Скопируйте ключ доступа.<br>2. Откройте Hiddify.<br>3. Нажмите большой <b>Плюс (+)</b> или "Добавить из буфера".<br>4. Нажмите большую кнопку по центру для подключения.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-gray-600 text-sm border-t border-white/5">
+        &copy; 2026 FAST VILLAGE.
+    </footer>
+
+    <script>
+        function switchTab(platform) {
+            // Скрываем все контенты
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Убираем активность у всех кнопок
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Показываем нужный контент
+            document.getElementById('content-' + platform).classList.remove('hidden');
+            // Активируем нужную кнопку
+            document.getElementById('btn-' + platform).classList.add('active');
+        }
+    </script>
+</body>
+</html>
